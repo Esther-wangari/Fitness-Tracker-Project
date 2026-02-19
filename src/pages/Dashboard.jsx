@@ -1,3 +1,5 @@
+import ProgressChart from "../components/ProgressChart";
+
 function Dashboard ({ workouts}) {
     const totalWorkouts = workouts.length;
 
@@ -18,7 +20,7 @@ function Dashboard ({ workouts}) {
           <p className="text-gray-500">Total volume</p>
           <p className="text-2xl font-bold">{totalVolume}</p>
         </div>
-
+         <ProgressChart workouts={workouts} />
         </div>
         </div>
 

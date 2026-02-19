@@ -9,6 +9,8 @@ function Navbar () {
             </Link>
              <Link to= "/history"> History
             </Link>
+            <Link to= "/exercises"> Exercises
+            </Link>
         </nav>
     );
 

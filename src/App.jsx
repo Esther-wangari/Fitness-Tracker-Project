@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AddWorkout from "./pages/AddWorkout";
 import History from "./pages/History";
+import Exercises from "./Exercises";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
@@ -20,18 +22,18 @@ function App() {
       notes: "" // Default notes
     };
     setWorkouts(prevWorkouts => [...prevWorkouts, newWorkout]);
-  };
-
-  return (
+    return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard workouts={workouts} />} />
         <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
         <Route path="/history" element={<History workouts={workouts} />} />
+        <Route path="/exercises" element={<Exercises />} />
       </Routes>
     </div>
   );
+  };
 }
 
 export default App;
