@@ -1,5 +1,16 @@
 import ProgressChart from "../components/ProgressChart";
 
+const [workouts, setWorkouts] = useState([]);
+
+{workouts.length === 0 ? (
+  <div className="text-center text-gray-500">No workouts logged yet.</div>
+  
+) : (
+  <ProgressChart workouts={workouts} />
+   
+
+)}
+
 function Dashboard ({ workouts}) {
     const totalWorkouts = workouts.length;
 
