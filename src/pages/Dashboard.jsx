@@ -1,41 +1,23 @@
+import {useState } from "react";
 import ProgressChart from "../components/ProgressChart";
 
-const [workouts, setWorkouts] = useState([]);
-
-{workouts.length === 0 ? (
-  <div className="text-center text-gray-500">No workouts logged yet.</div>
-  
-) : (
-  <ProgressChart workouts={workouts} />
-   
-
-)}
-
-function Dashboard ({ workouts}) {
-    const totalWorkouts = workouts.length;
-
-    const totalVolume = workouts.reduce(
-        (sum, w) => sum + w.sets * w.reps * w.weight, 0
-    );
-
-    return (
-        <div> 
-            <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-        <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white p-4 rounded shadow">
-          <p className="text-gray-500">Total Workouts</p>
-          <p className="text-2xl font-bold">{totalWorkouts}</p>
-        </div>
-
-          <div className="bg-white p-4 rounded shadow">
-          <p className="text-gray-500">Total volume</p>
-          <p className="text-2xl font-bold">{totalVolume}</p>
-        </div>
-         <ProgressChart workouts={workouts} />
-        </div>
-        </div>
-
-    );
-
+function Dashboard() {
+  const [workouts, setWorkouts] = useState([
+  { id: 1, exercise: "Push Ups", sets: 3, reps: 10 },
+  { id: 2, exercise: "Squats", sets: 4, reps: 15 },
+  { id: 3, exercise: "Pull Ups", sets: 2, reps: 8 }
+  ]);
 }
- export default Dashboard;
+
+return (
+  <div className="container mx-auto p-4">
+    <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+    {workouts.length === 0 ? (
+      <p className="text-gray-500">No workouts added yet. Start by adding your first workout!</p>
+    ) : (
+      <ProgressChart workouts={workouts} />
+    )}
+  </div>
+);
+
+export default Dashboard;
