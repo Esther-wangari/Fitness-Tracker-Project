@@ -22,15 +22,20 @@ function App() {
       notes: "" // Default notes
     };
     setWorkouts(prevWorkouts => [...prevWorkouts, newWorkout]);
+
     return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Dashboard workouts={workouts} />} />
-        <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
-        <Route path="/history" element={<History workouts={workouts} />} />
-        <Route path="/exercises" element={<Exercises />} />
-      </Routes>
+      <ErrorBoundary
+        fallback={<div className="p-4 bg-red-100 text-red-700 rounded">Something went wrong. Please try again later.</div>}
+      >
+        <Routes>
+          <Route path="/" element={<Dashboard workouts={workouts} />} />
+          <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
+          <Route path="/history" element={<History workouts={workouts} />} />
+          <Route path="/exercises" element={<Exercises />} />
+        </Routes>
+      </ErrorBoundary>
     </div>
   );
   };
