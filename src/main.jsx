@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 
 
-const root = createRoot(document.getElementById('root'));
+ReactDOM.createRoot(document.getElementById('root')).render(
 <React.StrictMode>
   <BrowserRouter>
     <ErrorBoundary>
@@ -14,6 +14,8 @@ const root = createRoot(document.getElementById('root'));
     </ErrorBoundary>
   </BrowserRouter>
 </React.StrictMode>
+);
+
 
 
 
