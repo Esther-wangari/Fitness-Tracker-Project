@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
@@ -18,27 +18,27 @@ function App() {
       reps: Number(workoutData.reps),
       date: new Date().toLocaleDateString(),
       exercise: workoutData.name,
-      weight: 0, // Default weight
-      notes: "" // Default notes
+      weight: 0,
+      notes: ""
     };
-    setWorkouts(prevWorkouts => [...prevWorkouts, newWorkout]);
-
-    return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <ErrorBoundary
-        fallback={<div className="p-4 bg-red-100 text-red-700 rounded">Something went wrong. Please try again later.</div>}
-      >
-        <Routes>
-          <Route path="/" element={<Dashboard workouts={workouts} />} />
-          <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
-          <Route path="/history" element={<History workouts={workouts} />} />
-          <Route path="/exercises" element={<Exercises />} />
-        </Routes>
-      </ErrorBoundary>
-    </div>
-  );
+    setWorkouts(prev => [...prev, newWorkout]);
   };
+
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <ErrorBoundary fallback={<div>Error!</div>}>
+          <Routes>
+            <Route path="/" element={<Dashboard workouts={workouts} />} />
+            <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
+            <Route path="/history" element={<History workouts={workouts} />} />
+            <Route path="/exercises" element={<Exercises />} />
+          </Routes>
+        </ErrorBoundary>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
