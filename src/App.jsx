@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AddWorkout from "./pages/AddWorkout";
 import History from "./pages/History";
-import Exercises from "./Exercises";
+import Exercises from "./components/Exercises";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
