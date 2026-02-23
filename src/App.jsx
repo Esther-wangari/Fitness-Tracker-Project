@@ -9,6 +9,15 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
+  const saved = localStorage.getItem("workouts");
+  if (saved) {
+    setWorkouts(JSON.parse(saved) || []);
+  
+  }
+
+  useEffect(() => {
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+  }, [workouts]);
 
   const addWorkout = (workoutData) => {
     const newWorkout = {

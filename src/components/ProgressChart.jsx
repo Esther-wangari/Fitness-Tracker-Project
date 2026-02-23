@@ -1,47 +1,24 @@
-import {useState, useEffect} from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import {line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 
-import { Bar } from "react-chartjs-2";
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export default function ProgressChart({ workouts }) {
-  const exerciseMap = {};
-
-  workouts.forEach((workout) => {
-    if (!exerciseMap[workout.exercise]) {
-      exerciseMap[workout.exercise] = 0;
-    }
-    exerciseMap[workout.exercise] += workout.sets * workout.reps;
-  });
-
+function ProgressChart({ workouts }) {
   const data = {
-    labels: Object.keys(exerciseMap),
+    labels: workouts.map((workout) => new Date(workout.date).toLocaleDateString()),
     datasets: [
       {
-        label: "Total Reps",
-        data: Object.values(exerciseMap),
-        backgroundColor: "rgba(59, 130, 246, 0.5)",
-        borderColor: "rgba(59, 130, 246, 1)",
-        borderWidth: 1,
+        label: "Total Weight Lifted",
+        data: workouts.map((workout) => workout.weight * workout.reps * workout.sets),
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
       },
     ],
   };
 
-  return <Bar data={data} />;
+  return <line data={data} />;
 }
+
+export default ProgressChart;
+
