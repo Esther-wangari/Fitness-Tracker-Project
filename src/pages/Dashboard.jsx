@@ -1,7 +1,6 @@
-import {useState } from "react";
-import { useMemo } from "react";
-import { useEffect } from "react";
-//import ProgressChart from "../components/ProgressChart";
+import {useEffect, useState ,useMemo } from "react";
+
+import ProgressChart from "../components/ProgressChart";
 
 function calculateTotalWeight(exercises) {
   return exercises.reduce((total, exercise) => {
