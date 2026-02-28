@@ -1,37 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AddWorkout from "./pages/AddWorkout";
 import History from "./pages/History";
-import Exercises from "./components/Exercises";
+import ExercisesSearch from "./components/ExercisesSearch.jsx";
 import ErrorBoundary from "./components/ErrorBoundary";
+import React from "react";
 
 function App() {
-  const [workouts, setWorkouts] = useState([]);
-  const saved = localStorage.getItem("workouts");
-  if (saved) {
-    setWorkouts(JSON.parse(saved) || []);
-  
-  }
+  const [workouts, setWorkouts] = React.useState([]);
+ 
+  useEffect(() => {
+    const savedWorkouts = JSON.parse(localStorage.getItem("workouts")) || [];
+    setWorkouts(savedWorkouts);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("workouts", JSON.stringify(workouts));
   }, [workouts]);
-
-  const addWorkout = (workoutData) => {
-    const newWorkout = {
-      id: Date.now(),
-      ...workoutData,
-      sets: Number(workoutData.sets),
-      reps: Number(workoutData.reps),
-      date: new Date().toLocaleDateString(),
-      exercise: workoutData.name,
-      weight: 0,
-      notes: ""
-    };
-    setWorkouts(prev => [...prev, newWorkout]);
-  };
 
   return (
     <BrowserRouter>
@@ -40,7 +26,7 @@ function App() {
         <ErrorBoundary fallback={<div>Error!</div>}>
           <Routes>
             <Route path="/" element={<Dashboard workouts={workouts} />} />
-            <Route path="/add" element={<AddWorkout onAddWorkout={addWorkout} />} />
+            <Route path="/add" element={<AddWorkout setWorkouts={setWorkouts} />} />
             <Route path="/history" element={<History workouts={workouts} />} />
             <Route path="/exercises" element={<Exercises />} />
           </Routes>

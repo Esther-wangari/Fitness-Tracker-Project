@@ -1,21 +1,22 @@
-function History ({ workouts }) {
-    return (
-      <div>
-        <h2 className="text-xl font-bold mb-4">Workout History</h2>
+function WorkoutHistory( {workouts} ) {
+  if (workouts.length === 0) {
+    return <p className="text-center text-gray-500">No workouts logged yet.</p>;
+  }
 
-        {workouts.map(workout => (
-          <div key={workout.id} 
-          className="bg-white p-4 rounded shadow mb-4">
-            <p><strong>Exercise:</strong> {workout.exercise}</p>
-            <p><strong>Date:</strong> {workout.date}</p>
-            <p><strong>Sets:</strong> {workout.sets}</p>
-            <p><strong>Reps:</strong> {workout.reps}</p>
-            <p><strong>Weight:</strong> {workout.weight}kg</p>
-          </div>
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Workout History</h2>
+      <ul className="space-y-2">
+        {workouts.map((workout, index) => (
+          <li key={index} className="bg-white p-4 rounded shadow">
+            <h3 className="text-lg font-semibold">{workout.name}</h3>
+            <p>Sets: {workout.sets}</p>
+            <p>Reps: {workout.reps}</p>
+          </li>
         ))}
-      </div>
-    )
-
+      </ul>
+    </div>
+  );
 }
 
-export default History;
+export default WorkoutHistory;

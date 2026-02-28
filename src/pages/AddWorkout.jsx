@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 
-function AddWorkout({ onAddWorkout }) {
+function AddWorkout({ setWorkouts }) {
   const [form, setForm] = useState({ name: "", sets: "", reps: "" });
 
   const handleChange = (e) => {
@@ -9,10 +9,8 @@ function AddWorkout({ onAddWorkout }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onAddWorkout) {
-      onAddWorkout(form);
-      setForm({ name: "", sets: "", reps: "" });
-    }
+    setWorkouts(prevWorkouts => [...prevWorkouts, form]);
+    setForm({ name: "", sets: "", reps: "" });
   };
 
   return (

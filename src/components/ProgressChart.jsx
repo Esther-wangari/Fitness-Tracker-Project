@@ -1,26 +1,41 @@
-import react from "react";
-import { useEffect,useState,useMemo } from "react";
-import {line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function ProgressChart({ workouts }) {
-  const data = {
-    labels: workouts.map((workout) => new Date(workout.date).toLocaleDateString()),
-    datasets: [
-      {
-        label: "Total Weight Lifted",
-        data: workouts.map((workout) => workout.weight * workout.reps * workout.sets),
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  };
+const labels = workouts.map((workout, index) => `${workout.name} (${index + 1})`);
+const data = {
+  labels,
+  datasets: [
+    {
+      label: "Total Reps",
+      data: workouts.map(workout => workout.sets * workout.reps),
+      backgroundColor: "rgba(54, 162, 235, 0.5)",
+    },
+  ],
+}
 
-  return <line data={data} />;
+  return (<div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Progress Chart</h2>
+      <Bar data={data} />
+    </div>
+  );
 }
 
 export default ProgressChart;
-
