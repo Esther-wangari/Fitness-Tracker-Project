@@ -1,15 +1,6 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 
-export default function Exercises() {
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Exercises</h1>
-      <Exercises />
-    </div>
-  );
-}
-
 function Exercises() {
   const [exercise, setExercise] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,8 +8,19 @@ function Exercises() {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const response = await axios.get("https://wger.de/api/v2/exerciseinfo/");
-        setExercise(response.data.results);
+        const data = [
+          {
+            "id": 1, name: "Push-up"
+          },
+          {
+            "id": 2, name: "Squat"
+          },
+          {   "id": 3, name: "Lunge"
+            
+          }
+          
+        ]
+        setExercise(data);
       } catch (error) {
         console.error("Error fetching exercises:", error);
       }
@@ -41,4 +43,6 @@ function Exercises() {
     </div>
   );
 }
+
+export default Exercises;
   
