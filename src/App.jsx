@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import AddWorkout from "./pages/AddWorkout";
 import History from "./pages/History";
-import ExercisesSearch from "./components/ExercisesSearch.jsx";
+import Exercises from "./components/Exercises";
 import ErrorBoundary from "./components/ErrorBoundary";
 import React from "react";
 import { useEffect,useState } from "react";

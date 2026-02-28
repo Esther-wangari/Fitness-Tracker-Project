@@ -1,6 +1,15 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 
+export default function Exercises() {
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Exercises</h1>
+      <ExercisesSearch />
+    </div>
+  );
+}
+
 function ExercisesSearch() {
   const [exercise, setExercise] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +41,4 @@ function ExercisesSearch() {
     </div>
   );
 }
-
-export default ExercisesSearch;
   
