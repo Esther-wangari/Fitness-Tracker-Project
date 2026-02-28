@@ -29,7 +29,7 @@ function App() {
             <Route path="/" element={<Dashboard workouts={workouts} />} />
             <Route path="/add" element={<AddWorkout setWorkouts={setWorkouts} />} />
             <Route path="/history" element={<History workouts={workouts} />} />
-            <Route path="/exercises" element={<Exercises />} />
+            <Route path="/Exercises" element={<Exercises />} />
           </Routes>
         </ErrorBoundary>
       </div>
