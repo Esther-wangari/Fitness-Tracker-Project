@@ -6,9 +6,10 @@ import History from "./pages/History";
 import ExercisesSearch from "./components/ExercisesSearch.jsx";
 import ErrorBoundary from "./components/ErrorBoundary";
 import React from "react";
+import { useEffect,useState } from "react";
 
 function App() {
-  const [workouts, setWorkouts] = React.useState([]);
+  const [workouts, setWorkouts] = useState([]);
  
   useEffect(() => {
     const savedWorkouts = JSON.parse(localStorage.getItem("workouts")) || [];
